@@ -1,0 +1,10 @@
+
+================================================================
+======== txAdmin v7.1.0 atop fxserver 8216 Starting - 22/05/2024 23:50:11
+================================================================
+[23:50:46][impress1] created admins file
+[23:50:59][impress1] Changing global settings via setup stepper and started Deployer.
+[23:51:01][impress1] Setting recipe.
+[23:51:46][impress1] Running recipe.
+[23:56:14][impress1] Completed and committed server deploy.
+[11:22:51][impress1] executed "RESTART SERVER"

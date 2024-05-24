@@ -53,20 +53,14 @@ const InventoryContainer = Vue.createApp({
     methods: {
         getInitialState() {
             return {
-                // Config Options
                 maxWeight: 0,
                 totalSlots: 0,
-                // Escape Key
                 isInventoryOpen: false,
-                // Single pane
                 isOtherInventoryEmpty: true,
-                // Error handling
                 errorSlot: null,
-                // Player Inventory
                 playerInventory: {},
                 inventoryLabel: "Inventory",
                 totalWeight: 0,
-                // Other inventory
                 otherInventory: {},
                 otherInventoryName: "",
                 otherInventoryLabel: "Drop",
@@ -74,30 +68,23 @@ const InventoryContainer = Vue.createApp({
                 otherInventoryMaxWeight: 1000000,
                 otherInventorySlots: 100,
                 isShopInventory: false,
-                // Where item is coming from
                 inventory: "",
-                // Context Menu
                 showContextMenu: false,
                 contextMenuPosition: { top: "0px", left: "0px" },
                 contextMenuItem: null,
                 showSubmenu: false,
-                // Hotbar
                 showHotbar: false,
                 hotbarItems: [],
-                // Notification box
                 showNotification: false,
                 notificationText: "",
                 notificationImage: "",
                 notificationType: "added",
                 notificationAmount: 1,
-                // Required items box
                 showRequiredItems: false,
                 requiredItems: [],
-                // Attachments
                 selectedWeapon: null,
                 showWeaponAttachments: false,
                 selectedWeaponAttachments: [],
-                // Dragging and dropping
                 currentlyDraggingItem: null,
                 currentlyDraggingSlot: null,
                 dragStartX: 0,
@@ -231,6 +218,14 @@ const InventoryContainer = Vue.createApp({
                 }
             }
         },
+        canTransferItem(item, amount, fromPlayerToOther) {
+            const itemWeight = item.weight * amount;
+            if (fromPlayerToOther) {
+                return (this.otherInventoryWeight + itemWeight) <= this.otherInventoryMaxWeight;
+            } else {
+                return (this.playerWeight + itemWeight) <= this.maxWeight;
+            }
+        },
         moveItemBetweenInventories(item, sourceInventoryType) {
             const sourceInventory = sourceInventoryType === "player" ? this.playerInventory : this.otherInventory;
             const targetInventory = sourceInventoryType === "player" ? this.otherInventory : this.playerInventory;
@@ -242,6 +237,11 @@ const InventoryContainer = Vue.createApp({
             const sourceItem = sourceInventory[item.slot];
             if (!sourceItem || sourceItem.amount < amountToTransfer) {
                 console.error("Error: Insufficient amount of item in source inventory");
+                return;
+            }
+
+            if (!this.canTransferItem(item, amountToTransfer, sourceInventoryType === "player")) {
+                console.error("Transfer failed: Exceeds weight limit");
                 return;
             }
 
@@ -419,6 +419,10 @@ const InventoryContainer = Vue.createApp({
                 const amountToTransfer = this.transferAmount !== null ? this.transferAmount : sourceItem.amount;
                 if (sourceItem.amount < amountToTransfer) {
                     throw new Error("Insufficient amount of item in source inventory");
+                }
+
+                if (!this.canTransferItem(sourceItem, amountToTransfer, this.dragStartInventoryType === "player")) {
+                    throw new Error("Insufficient weight capacity.");
                 }
 
                 const targetItem = targetInventory[targetSlotNumber];

@@ -1,0 +1,4 @@
+[submodule "QBCoreFramework_4EAF11.base/resources/ox_lib"]
+    path = QBCoreFramework_4EAF11.base/resources/ox_lib
+    url = https://github.com/overextended/ox_lib
+    ignore = dirty

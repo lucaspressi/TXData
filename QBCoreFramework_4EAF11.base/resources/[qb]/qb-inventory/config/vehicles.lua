@@ -1,57 +1,57 @@
 VehicleStorage = {
     default = {
         gloveboxSlots = 5,
-        gloveboxWeight = 10000,
-        trunkSlots = 35,
-        trunkWeight = 60000
+        gloveboxWeight = 5000,
+        trunkSlots = 30,
+        trunkWeight = 10000
     },
     [0] = { -- Compacts
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 30,
-        trunkWeight = 38000
+        trunkWeight =  300000 
     },
     [1] = { -- Sedans
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 40,
-        trunkWeight = 50000
+        trunkWeight = 500000
     },
     [2] = { -- SUVs
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 50,
-        maxWeight = 75000
+        maxWeight = 750000
     },
     [3] = { -- Coupes
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 35,
-        maxWeight = 42000
+        maxWeight = 10000
     },
     [4] = { -- Muscle
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 30,
-        trunkWeight = 38000
+        trunkWeight = 10000
     },
     [5] = { -- Sports Classics
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 25,
-        trunkWeight = 30000
+        trunkWeight = 10000
     },
     [6] = { -- Sports
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 25,
-        trunkWeight = 30000
+        trunkWeight = 10000
     },
     [7] = { -- Super
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 25,
-        trunkWeight = 30000
+        trunkWeight = 10000
     },
     [8] = { -- Motorcycles
         gloveboxSlots = 5,
@@ -62,14 +62,14 @@ VehicleStorage = {
     [9] = { -- Off-road
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
-        trunkSlots = 35,
-        trunkWeight = 60000
+        trunkSlots = 15,
+        trunkWeight = 150000
     },
     [12] = { -- Vans
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 35,
-        trunkWeight = 120000
+        trunkWeight = 1500000
     },
     [13] = { -- Cycles
         gloveboxSlots = 5,

@@ -17,7 +17,7 @@ end)
 -- Functions
 
 local vehicleClasses = {
-    compacts = 0,
+    compacto = 0,
     sedans = 1,
     suvs = 2,
     coupes = 3,
@@ -56,7 +56,7 @@ local function filterVehiclesByCategory(vehicles, category)
 
     for _, vehicle in pairs(vehicles) do
         local vehicleData = QBCore.Shared.Vehicles[vehicle.vehicle]
-        local vehicleCategoryString = vehicleData and vehicleData.category or 'compacts'
+        local vehicleCategoryString = vehicleData and vehicleData.category or 'compacto'
         local vehicleCategoryNumber = vehicleClasses[vehicleCategoryString]
 
         if vehicleCategoryNumber and categorySet[vehicleCategoryNumber] then

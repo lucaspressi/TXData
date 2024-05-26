@@ -18,6 +18,13 @@ function QBCore.Player.Login(source, citizenid, newData)
                 PlayerData.position = json.decode(PlayerData.position)
                 PlayerData.metadata = json.decode(PlayerData.metadata)
                 PlayerData.charinfo = json.decode(PlayerData.charinfo)
+                
+                -- Adicione estas linhas para garantir que a metadata esteja definida
+                PlayerData.metadata['dealerrep'] = PlayerData.metadata['dealerrep'] or 0
+                PlayerData.metadata['coke'] = PlayerData.metadata['coke'] or 0
+                PlayerData.metadata['heroin'] = PlayerData.metadata['heroin'] or 0
+                PlayerData.metadata['lsd'] = PlayerData.metadata['lsd'] or 0
+                
                 QBCore.Player.CheckPlayerData(source, PlayerData)
             else
                 DropPlayer(source, Lang:t('info.exploit_dropped'))
@@ -33,6 +40,7 @@ function QBCore.Player.Login(source, citizenid, newData)
     end
 end
 
+
 function QBCore.Player.GetOfflinePlayer(citizenid)
     if citizenid then
         local PlayerData = MySQL.prepare.await('SELECT * FROM players where citizenid = ?', { citizenid })
@@ -43,11 +51,19 @@ function QBCore.Player.GetOfflinePlayer(citizenid)
             PlayerData.position = json.decode(PlayerData.position)
             PlayerData.metadata = json.decode(PlayerData.metadata)
             PlayerData.charinfo = json.decode(PlayerData.charinfo)
+            
+            -- Adicione estas linhas para garantir que a metadata esteja definida
+            PlayerData.metadata['dealerrep'] = PlayerData.metadata['dealerrep'] or 0
+            PlayerData.metadata['coke'] = PlayerData.metadata['coke'] or 0
+            PlayerData.metadata['heroin'] = PlayerData.metadata['heroin'] or 0
+            PlayerData.metadata['lsd'] = PlayerData.metadata['lsd'] or 0
+            
             return QBCore.Player.CheckPlayerData(nil, PlayerData)
         end
     end
     return nil
 end
+
 
 function QBCore.Player.GetPlayerByLicense(license)
     if license then
@@ -101,6 +117,12 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
     end
 
     applyDefaults(PlayerData, QBCore.Config.Player.PlayerDefaults)
+    
+    -- Adicione estas linhas para garantir que a metadata esteja definida
+    PlayerData.metadata['dealerrep'] = PlayerData.metadata['dealerrep'] or 0
+    PlayerData.metadata['coke'] = PlayerData.metadata['coke'] or 0
+    PlayerData.metadata['heroin'] = PlayerData.metadata['heroin'] or 0
+    PlayerData.metadata['lsd'] = PlayerData.metadata['lsd'] or 0
 
     if GetResourceState('qb-inventory') ~= 'missing' then
         PlayerData.items = exports['qb-inventory']:LoadInventory(PlayerData.source, PlayerData.citizenid)
@@ -108,6 +130,7 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
 
     return QBCore.Player.CreatePlayer(PlayerData, Offline)
 end
+
 
 -- On player logout
 

@@ -36,8 +36,9 @@ QBCore.Functions.CreateClientCallback('qb-inventory:client:vehicleCheck', functi
     if inVehicle ~= 0 then
         local plate = GetVehicleNumberPlateText(inVehicle)
         local class = GetVehicleClass(inVehicle)
+        local model = GetEntityModel(inVehicle)
         local inventory = 'glovebox-' .. plate
-        cb(inventory, class)
+        cb(inventory, class, model)
         return
     end
 
@@ -52,9 +53,10 @@ QBCore.Functions.CreateClientCallback('qb-inventory:client:vehicleCheck', functi
             if GetVehicleDoorLockStatus(vehicle) < 2 then
                 OpenTrunk(vehicle)
                 local class = GetVehicleClass(vehicle)
+                local model = GetEntityModel(vehicle)
                 local plate = GetVehicleNumberPlateText(vehicle)
                 local inventory = 'trunk-' .. plate
-                cb(inventory, class)
+                cb(inventory, class, model)
             else
                 QBCore.Functions.Notify(Lang:t('notify.vlocked'), 'error')
                 return

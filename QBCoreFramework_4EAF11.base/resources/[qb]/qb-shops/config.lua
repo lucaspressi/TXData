@@ -84,6 +84,10 @@ Config.Products = {
         { name = 'weapon_vintagepistol', price = 4000, amount = 5,   requiredLicense = 'weapon' },
     },
     ['blackmarket'] = {
+
+        {name = 'bakingsoda',   price = 100,   amount = 5000},
+        {name = 'emptyvial',    price = 100,   amount = 5000},
+        {name = 'needle',    	price = 100,   amount = 5000},
         { name = 'security_card_01',  price = 5000, amount = 50 },
         { name = 'security_card_02',  price = 5000, amount = 50 },
         { name = 'advanced_lockpick', price = 5000, amount = 50 },

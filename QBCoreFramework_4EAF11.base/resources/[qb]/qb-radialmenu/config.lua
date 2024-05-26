@@ -30,7 +30,7 @@ Config.MenuItems = {
             title = 'Corner Selling',
             icon = 'cannabis',
             type = 'client',
-            event = 'qb-drugs:client:cornerselling',
+            event = 'md-drugs:client:cornerselling',
             shouldClose = true
         }, {
             id = 'togglehotdogsell',

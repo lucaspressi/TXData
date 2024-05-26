@@ -45,43 +45,43 @@ Config.Shops = {
         ['ShowroomVehicles'] = {
             [1] = {
                 coords = vector4(-45.65, -1093.66, 25.44, 69.5), -- where the vehicle will spawn on display
-                defaultVehicle = 'ardent',                       -- Default display vehicle
-                chosenVehicle = 'ardent',                        -- Same as default but is dynamically changed when swapping vehicles
+                defaultVehicle = 'asbo',                       -- Default display vehicle
+                chosenVehicle = 'asbo',                        -- Same as default but is dynamically changed when swapping vehicles
             },
             [2] = {
                 coords = vector4(-48.27, -1101.86, 25.44, 294.5),
-                defaultVehicle = 'schafter2',
-                chosenVehicle = 'schafter2'
+                defaultVehicle = 'asea',
+                chosenVehicle = 'asea'
             },
             [3] = {
                 coords = vector4(-39.6, -1096.01, 25.44, 66.5),
-                defaultVehicle = 'coquette',
-                chosenVehicle = 'coquette'
+                defaultVehicle = 'patriot3',
+                chosenVehicle = 'patriot3'
             },
             [4] = {
                 coords = vector4(-51.21, -1096.77, 25.44, 254.5),
-                defaultVehicle = 'vigero',
-                chosenVehicle = 'vigero'
+                defaultVehicle = 'blazer',
+                chosenVehicle = 'blazer'
             },
             [5] = {
                 coords = vector4(-40.18, -1104.13, 25.44, 338.5),
-                defaultVehicle = 'rhapsody',
-                chosenVehicle = 'rhapsody'
+                defaultVehicle = 'speedo5',
+                chosenVehicle = 'speedo5'
             },
             [6] = {
                 coords = vector4(-43.31, -1099.02, 25.44, 52.5),
-                defaultVehicle = 'bati',
-                chosenVehicle = 'bati'
+                defaultVehicle = 'patriot3',
+                chosenVehicle = 'patriot3'
             },
             [7] = {
                 coords = vector4(-50.66, -1093.05, 25.44, 222.5),
-                defaultVehicle = 'bati',
-                chosenVehicle = 'bati'
+                defaultVehicle = 'asbo',
+                chosenVehicle = 'asbo'
             },
             [8] = {
                 coords = vector4(-44.28, -1102.47, 25.44, 298.5),
-                defaultVehicle = 'bati',
-                chosenVehicle = 'bati'
+                defaultVehicle = 'asea',
+                chosenVehicle = 'asea'
             }
         },
     },

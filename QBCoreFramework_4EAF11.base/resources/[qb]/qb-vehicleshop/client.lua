@@ -107,31 +107,18 @@ local function comma_value(amount)
 end
 
 local function getVehName()
-    if insideShop and Config.Shops[insideShop] and Config.Shops[insideShop]['ShowroomVehicles'] and Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle] then
-        return QBCore.Shared.Vehicles[Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle].chosenVehicle]['name']
-    else
-        return 'Unknown'
-    end
+    return QBCore.Shared.Vehicles[Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle].chosenVehicle]['name']
 end
 
 local function getVehPrice()
-    if insideShop and Config.Shops[insideShop] and Config.Shops[insideShop]['ShowroomVehicles'] and Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle] then
-        return comma_value(QBCore.Shared.Vehicles[Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle].chosenVehicle]['price'])
-    else
-        return 'Unknown'
-    end
+    return comma_value(QBCore.Shared.Vehicles[Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle].chosenVehicle]['price'])
 end
 
 local function getVehBrand()
-    if insideShop and Config.Shops[insideShop] and Config.Shops[insideShop]['ShowroomVehicles'] and Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle] then
-        return QBCore.Shared.Vehicles[Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle].chosenVehicle]['brand']
-    else
-        return 'Unknown'
-    end
+    return QBCore.Shared.Vehicles[Config.Shops[insideShop]['ShowroomVehicles'][ClosestVehicle].chosenVehicle]['brand']
 end
 
 local function setClosestShowroomVehicle()
-    if not insideShop then return end
     local pos = GetEntityCoords(PlayerPedId(), true)
     local current = nil
     local dist = nil
@@ -152,7 +139,6 @@ local function setClosestShowroomVehicle()
         ClosestVehicle = current
     end
 end
-
 
 local function createTestDriveReturn()
     testDriveZone = BoxZone:Create(

@@ -1,0 +1,15 @@
+# Ignorar modificações na submodule
+resources/ox_lib
+
+# Ignorar arquivos na pasta default/data
+../default/data/playersDB.backup.json
+../default/data/playersDB.json
+../default/data/stats_heatmapData_v1.json
+
+# Ignorar arquivos na pasta default/logs
+../default/logs/admin.log
+../default/logs/fxserver.log
+../default/logs/server.log
+
+# Ignorar o arquivo .gitignore na pasta superior
+../.gitignore

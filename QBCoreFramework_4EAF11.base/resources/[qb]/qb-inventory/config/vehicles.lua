@@ -9,19 +9,19 @@ VehicleStorage = {
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 30,
-        trunkWeight =  300000 
+        trunkWeight =  10000 
     },
     [1] = { -- Sedans
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 40,
-        trunkWeight = 500000
+        trunkWeight = 10000
     },
     [2] = { -- SUVs
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 50,
-        maxWeight = 750000
+        maxWeight = 10000
     },
     [3] = { -- Coupes
         gloveboxSlots = 5,
@@ -57,19 +57,19 @@ VehicleStorage = {
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 15,
-        trunkWeight = 15000
+        trunkWeight = 10000
     },
     [9] = { -- Off-road
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 15,
-        trunkWeight = 150000
+        trunkWeight = 10000
     },
     [12] = { -- Vans
         gloveboxSlots = 5,
         gloveboxWeight = 10000,
         trunkSlots = 35,
-        trunkWeight = 1500000
+        trunkWeight = 10000
     },
     [13] = { -- Cycles
         gloveboxSlots = 5,
@@ -137,4 +137,20 @@ BackEngineVehicles = {
     [`gp1`] = true,
     [`autarch`] = true,
     [`tyrant`] = true
+}
+
+CustomVehicleStorage = {
+    [GetHashKey("asbo")] = {
+        gloveboxSlots = 3,
+        gloveboxWeight = 5000,
+        trunkSlots = 10,
+        trunkWeight = 3000000
+    },
+    [GetHashKey("zentorno")] = {
+        gloveboxSlots = 3,
+        gloveboxWeight = 5000,
+        trunkSlots = 10,
+        trunkWeight = 30000
+    }
+    -- Adicione outros veículos conforme necessário
 }

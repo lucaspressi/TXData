@@ -1,55 +1,63 @@
-# qb-inventory
+**AXFW | INVENTORY**
 
-## Dependencies
-- [qb-core](https://github.com/qbcore-framework/qb-core)
-- [qb-logs](https://github.com/qbcore-framework/qb-logs) - For logging transfer and other history
+Hello everyone! ,You guys may know me for releasing many inventories in the past (GC-INVENTORY,AX-INVENTORY V6) All of links will be provided below.
 
-## Features
-- Stashes (Personal and/or Shared)
-- Vehicle Trunk & Glovebox
-- Weapon Attachments
-- Shops
-- Item Drops
+This inventory is being released because i have decided to discontinue my own server because of time management and future studies. This inventory took about a month to make it was originally made for QBCore then was shifted to my own framework in which it had many improvements such as quality system for every single item and many more features which will be implemented in this version as well in the coming week
 
-## Documentation
-https://docs.qbcore.org/qbcore-documentation/qbcore-resources/qb-inventory
+This inventory was built from scratch..
 
-## Installation
-### Manual
-- Download the script and put it in the `[qb]` directory.
-- Import `qb-inventory.sql` in your database
-- Add the following code to your server.cfg/resouces.cfg
+FAQs
+Framework
+* **QBCore (<a href="https://github.com/qbcore-framework">Github</a>)**
+* **ESX -- Coming Soon!**
+* **Standalone Version -- Coming Soon!**
 
-# Migrating from old qb-inventory
 
-## Database
-### Upload the new `inventory.sql` file to create the new `inventories` table
-### Use the provided `migrate.sql` file to migrate all of your saved inventory data from stashes, trunks, etc
-### Once complete, you can delete `gloveboxitems` `stashitems` and `trunkitems` tables from your database
-```sql
-CREATE TABLE IF NOT EXISTS `inventories` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `identifier` VARCHAR(50) NOT NULL,
-  `items` LONGTEXT DEFAULT ('[]'),
-  PRIMARY KEY (`identifier`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
-```
+Features
 
-# License
+* QUICK Inventory (1-6)
+* Item Stacking/Splitting Items 
+* Trunk/Glove-box/Stash Support
+* Unique Crafting System
+* Responsive and Clean UI
+* Inbuilt clothing toggle option
+* Unique Drop System
+* Optimized (0.00 - 0.01 MS)
+* Clean Code for better configuration
+* Many More!
 
-    QBCore Framework
-    Copyright (C) 2021 Joshua Eger
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Dependencies
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+* DPClothing (<a href="https://github.com/andristum/dpclothing">Github</a>)
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>
+Preview
+
+* <a href="https://www.youtube.com/watch?v=fdmLUrA-43U"> Youtube</a>
+* More Coming Soon!
+
+**Link: (<a href="https://github.com/AxisGe0/axfw-inventory">Github</a>) (Doing final tests for the latest QBCore)**
+
+**There will be a file uploaded in github for those who want to convert the data from qb-inventory to this one**
+
+**New Resources will be released soon! (Free and Paid) Till then you can go ahead and take a look at my previous release resources**
+
+**1. GC-INVENTORY (<a href="https://forum.cfx.re/t/esx-gc-inventory-free-release/2010156">Link</a>) (ESX)**
+**2. AX-INVENTORY v6 (<a href="https://forum.cfx.re/t/free-ax-inventory-rework-of-qb-inventory/4772892">Link</a>) (QBCore)**
+**3. HUD (<a href="https://forum.cfx.re/t/hud-status-free-status-hud-axfw/4764065">Link</a>) (ESX/Standalone)**
+
+
+
+**DOCS**
+
+> ax-inv:Server:OpenInventory (Server Event)
+
+Usage: To Open Stash/GloveBox/Trunk
+
+Arguements: Stash Name,{slots=int}
+
+> ax-inv:Server:OpenPlayerInventory (Server Event)
+
+Usage: To Open Player Inventory
+
+Arguments: Player ID

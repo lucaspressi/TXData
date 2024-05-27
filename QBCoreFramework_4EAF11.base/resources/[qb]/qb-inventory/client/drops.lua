@@ -1,116 +1,43 @@
-local holdingDrop = false
-local bagObject = nil
-local heldDrop = nil
-CurrentDrop = nil
+local Drops = {}
 
--- Functions
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+    QBCore.Functions.TriggerCallback('ax-inv:GetDrops', function(cb)
+        Drops = cb 
+    end)
+end)
 
-function GetDrops()
-    QBCore.Functions.TriggerCallback('qb-inventory:server:GetCurrentDrops', function(drops)
-        if drops then
-            for k, v in pairs(drops) do
-                local bag = NetworkGetEntityFromNetworkId(v.entityId)
-                if DoesEntityExist(bag) then
-                    exports['qb-target']:AddTargetEntity(bag, {
-                        options = {
-                            {
-                                icon = 'fas fa-backpack',
-                                label = Lang:t('menu.o_bag'),
-                                action = function()
-                                    TriggerServerEvent('qb-inventory:server:openDrop', k)
-                                    CurrentDrop = dropId
-                                end,
-                            },
-                        },
-                        distance = 2.5,
-                    })
+RegisterNetEvent('ax-inv:GetDrop')
+AddEventHandler('ax-inv:GetDrop',function(data)
+    Drops = data 
+end)
+
+RegisterNUICallback('DropItem',function(data)
+    TriggerServerEvent('ax-inv:DropItem',data)
+end)
+
+CreateThread(function()
+    while true do 
+        local sleep = 1500 
+        local ped = GetPlayerPed(-1)
+        local coords = GetEntityCoords(ped)
+        for k,v in pairs(Drops) do 
+            local dist = #(coords-v.coords)
+            if dist <= 2 then 
+                sleep = 3
+                DrawMarker(2, v.coords.x, v.coords.y, v.coords.z-0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.15, 0.15, 0.15, 255,255, 255, 155, false, false, false, 0, false, false, false)
+                if IsControlJustReleased(0,38) then 
+                    RequestAnimDict("pickup_object")
+                    while not HasAnimDictLoaded("pickup_object") do
+                        Citizen.Wait(7)
+                    end
+                    TaskPlayAnim(GetPlayerPed(-1), "pickup_object" ,"pickup_low" ,8.0, -8.0, -1, 1, 0, false, false, false )
+                    Citizen.Wait(2000)
+                    ClearPedTasks(GetPlayerPed(-1))
+                    TriggerServerEvent('ax-inv:RemoveDrop',k)
                 end
             end
         end
-    end)
-end
-
--- Events
-
-RegisterNetEvent('qb-inventory:client:setupDropTarget', function(dropId)
-    while not NetworkDoesNetworkIdExist(dropId) do Wait(10) end
-    local bag = NetworkGetEntityFromNetworkId(dropId)
-    while not DoesEntityExist(bag) do Wait(10) end
-    local newDropId = 'drop-' .. dropId
-    exports['qb-target']:AddTargetEntity(bag, {
-        options = {
-            {
-                icon = 'fas fa-backpack',
-                label = Lang:t('menu.o_bag'),
-                action = function()
-                    TriggerServerEvent('qb-inventory:server:openDrop', newDropId)
-                    CurrentDrop = newDropId
-                end,
-            },
-            {
-                icon = 'fas fa-hand-pointer',
-                label = 'Pick up bag',
-                action = function()
-                    AttachEntityToEntity(
-                        bag,
-                        PlayerPedId(),
-                        GetPedBoneIndex(PlayerPedId(), Config.ItemDropObjectBone),
-                        Config.ItemDropObjectOffset[1].x,
-                        Config.ItemDropObjectOffset[1].y,
-                        Config.ItemDropObjectOffset[1].z,
-                        Config.ItemDropObjectOffset[2].x,
-                        Config.ItemDropObjectOffset[2].y,
-                        Config.ItemDropObjectOffset[2].z,
-                        true, true, false, true, 1, true
-                    )
-                    bagObject = bag
-                    holdingDrop = true
-                    heldDrop = newDropId
-                    exports['qb-core']:DrawText('Press [G] to drop the bag')
-                end,
-            }
-        },
-        distance = 2.5,
-    })
-end)
-
--- NUI Callbacks
-
-RegisterNUICallback('DropItem', function(item, cb)
-    QBCore.Functions.TriggerCallback('qb-inventory:server:createDrop', function(dropId)
-        if dropId then
-            while not NetworkDoesNetworkIdExist(dropId) do Wait(10) end
-            local bag = NetworkGetEntityFromNetworkId(dropId)
-            SetModelAsNoLongerNeeded(bag)
-            PlaceObjectOnGroundProperly(bag)
-            FreezeEntityPosition(bag, true)
-            local newDropId = 'drop-' .. dropId
-            cb(newDropId)
-        else
-            cb(false)
-        end
-    end, item)
-end)
-
--- Thread
-
-CreateThread(function()
-    while true do
-        if holdingDrop then
-            if IsControlJustPressed(0, 47) then
-                DetachEntity(bagObject, true, true)
-                local coords = GetEntityCoords(PlayerPedId())
-                local forward = GetEntityForwardVector(PlayerPedId())
-                local x, y, z = table.unpack(coords + forward * 0.57)
-                SetEntityCoords(bagObject, x, y, z - 0.9, false, false, false, false)
-                FreezeEntityPosition(bagObject, true)
-                exports['qb-core']:HideText()
-                TriggerServerEvent('qb-inventory:server:updateDrop', heldDrop, coords)
-                holdingDrop = false
-                bagObject = nil
-                heldDrop = nil
-            end
-        end
-        Wait(0)
+        Wait(sleep)
     end
 end)

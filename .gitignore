@@ -7,9 +7,7 @@ default/data/playersDB.json
 default/data/stats_heatmapData_v1.json
 
 # Ignorar arquivos na pasta default/logs
-default/logs/admin.log
-default/logs/fxserver.log
-default/logs/server.log
+default/logs/*
 
 QBCoreFramework_4EAF11.base/resources/ox_lib
 default/data/playersDB.json
